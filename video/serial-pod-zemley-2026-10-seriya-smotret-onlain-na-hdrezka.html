@@ -1,25 +1,76 @@
 <!DOCTYPE html>
-<!-- === Хедер с MP4 видео === -->
-<header id="site-header">
-  <video src="https://ia902807.us.archive.org/32/items/Charade19631280x696/Charade-1963.mp4"
-       poster="https://i.ytimg.com/vi/II_m28Bm-iM/hqdefault_live.jpg"
-       controls
-       width="640"
-       height="360">
-</video>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "VideoObject",
-  "name": "[HD Rezka] СЕРИАЛ ПОД ЗЕМЛЁЙ 2026 10 СЕРИЯ СМОТРЕТЬ ОНЛАЙН",
-  "description": "[HD Rezka] СЕРИАЛ ПОД ЗЕМЛЁЙ 2026 10 СЕРИЯ СМОТРЕТЬ ОНЛАЙН",
-  "thumbnailUrl": "https://i.ytimg.com/vi/II_m28Bm-iM/hqdefault_live.jpg",
-  "uploadDate": "2026-04-02T07:00:00+03:00",
-  "duration": "PT2H59M51S",
-  "contentUrl": "https://ia902807.us.archive.org/32/items/Charade19631280x696/Charade-1963.mp4",
-  "embedUrl": ""
-}
-</script>
+<!-- === HEADER з LIVE HLS потоком === -->
+<header id="site-header" style="position: relative; width: 800px; height: 450px;">
+
+  <!-- LIVE бейдж -->
+  <div id="live-badge" style="
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background-color: red;
+      color: white;
+      font-weight: bold;
+      padding: 5px 10px;
+      border-radius: 4px;
+      z-index: 10;
+      font-family: sans-serif;
+      font-size: 16px;
+      text-transform: uppercase;
+  ">
+    LIVE
+  </div>
+
+  <!-- Відео -->
+  <video id="video" controls autoplay muted playsinline
+         width="800" height="450"
+         style="display: block;"></video>
+
+  <!-- HLS.js -->
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <script>
+    var video = document.getElementById('video');
+    var videoSrc = 'https://tv.theindiebeat.fm/hls/stream.m3u8';
+
+    if (Hls.isSupported()) {
+        var hls = new Hls({
+            liveSyncDuration: 3,
+            liveMaxLatencyDuration: 5
+        });
+        hls.loadSource(videoSrc);
+        hls.attachMedia(video);
+        hls.on(Hls.Events.MANIFEST_PARSED, function() {
+            video.play();
+        });
+    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        video.src = videoSrc;
+        video.play();
+    }
+  </script>
+
+  <!-- JSON-LD (ОЧЕНЬ ВАЖНО) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+
+    "name": "СМОТРЕТЬ ПОЛНЫЙ ФИЛЬМ ПОД ЗЕМЛЁЙ 2026 10 СЕРИЯ ОНЛАЙН",
+    "description": "Прямий ефір (live stream)",
+
+    "thumbnailUrl": "https://i.ytimg.com/vi/II_m28Bm-iM/hqdefault_live.jpg",
+
+    "uploadDate": "2026-04-02T07:50:00+03:00",
+
+    "isLiveBroadcast": true,
+
+    "embedUrl": "https://kinaom.github.io/zem/video/serial-pod-zemley-2026-10-seriya-smotret-onlain-na-hdrezka.html",
+
+    "potentialAction": {
+      "@type": "WatchAction",
+      "target": "https://kinaom.github.io/zem/video/serial-pod-zemley-2026-10-seriya-smotret-onlain-na-hdrezka.html"
+    }
+  }
+  </script>
+
 </header>
 
 <html lang="uk">
