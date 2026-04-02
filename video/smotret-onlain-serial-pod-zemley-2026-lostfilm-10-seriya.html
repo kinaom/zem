@@ -1,26 +1,75 @@
 <!DOCTYPE html>
-<!-- === Хедер с MP4 видео === -->
-<header id="site-header">
-  <video src="https://ia902807.us.archive.org/32/items/Charade19631280x696/Charade-1963.mp4"
-       poster="https://i.ytimg.com/vi/II_m28Bm-iM/hqdefault_live.jpg"
-       controls
-       width="640"
-       height="360">
-</video>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "VideoObject",
-  "name": "(LOSTFILM) СМОТРЕТЬ ОНЛАЙН СЕРИАЛ ПОД ЗЕМЛЁЙ 2026 10 СЕРИЯ",
-  "description": "(LOSTFILM) СМОТРЕТЬ ОНЛАЙН СЕРИАЛ ПОД ЗЕМЛЁЙ 2026 10 СЕРИЯ.",
-  "thumbnailUrl": "https://i.ytimg.com/vi/II_m28Bm-iM/hqdefault_live.jpg",
-  "uploadDate": "2026-04-02T07:20:00+03:00",
-  "duration": "PT2H59M51S",
-  "contentUrl": "https://ia902807.us.archive.org/32/items/Charade19631280x696/Charade-1963.mp4",
-  "embedUrl": ""
-}
-</script>
-</header>
+<!-- === HEADER з LIVE HLS потоком === -->
+<header id="site-header" style="position: relative; width: 800px; height: 450px;">
+
+  <!-- LIVE бейдж -->
+  <div id="live-badge" style="
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background-color: red;
+      color: white;
+      font-weight: bold;
+      padding: 5px 10px;
+      border-radius: 4px;
+      z-index: 10;
+      font-family: sans-serif;
+      font-size: 16px;
+      text-transform: uppercase;
+  ">
+    LIVE
+  </div>
+
+  <!-- Відео -->
+  <video id="video" controls autoplay muted playsinline
+         width="800" height="450"
+         style="display: block;"></video>
+
+  <!-- HLS.js -->
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <script>
+    var video = document.getElementById('video');
+    var videoSrc = 'https://tv.theindiebeat.fm/hls/stream.m3u8';
+
+    if (Hls.isSupported()) {
+        var hls = new Hls({
+            liveSyncDuration: 3,
+            liveMaxLatencyDuration: 5
+        });
+        hls.loadSource(videoSrc);
+        hls.attachMedia(video);
+        hls.on(Hls.Events.MANIFEST_PARSED, function() {
+            video.play();
+        });
+    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        video.src = videoSrc;
+        video.play();
+    }
+  </script>
+
+  <!-- JSON-LD (ОЧЕНЬ ВАЖНО) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+
+    "name": "СМОТРЕТЬ ПОЛНЫЙ ФИЛЬМ ПОД ЗЕМЛЁЙ 2026 10 СЕРИЯ ОНЛАЙН",
+    "description": "Прямий ефір (live stream)",
+
+    "thumbnailUrl": "https://i.ytimg.com/vi/II_m28Bm-iM/hqdefault_live.jpg",
+
+    "uploadDate": "2026-04-02T08:10:00+03:00",
+
+    "isLiveBroadcast": true,
+
+    "embedUrl": "https://kinaom.github.io/zem/video/smotret-onlain-serial-pod-zemley-2026-lostfilm-10-seriya.html",
+
+    "potentialAction": {
+      "@type": "WatchAction",
+      "target": "https://kinaom.github.io/zem/video/smotret-onlain-serial-pod-zemley-2026-lostfilm-10-seriya.html"
+    }
+  }
+  </script>
 <html lang="uk">
 <head><meta charSet="utf-8"/>
 	<meta name="google-site-verification" content="6p5vSoBY-FlAl-X3qucew4qDvdj8Ns5k6UJSrCnhT-Q" />
@@ -171,7 +220,7 @@
   <div class="hover-bg" style="background-image:url(&quot;https://resource-innova.s3.amazonaws.com/media/5ACX4YBGPZWNKND5647TGUDQNU/GIF/5ACX4YBGPZWNKND5647TGUDQNU.gif&quot;)"></div>
   <img class="rec-size" src="https://i.ytimg.com/vi/II_m28Bm-iM/hqdefault_live.jpg" alt="FormattedPicture" style="width:100%;height:100%"/>
   <div class="tagbottom source-backgroundcolor responsepaddingtop">Video<span class="playbutton"><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-209c31.4-18.5 31.5-64.1 0-82.6z"></path></svg></span>17:17</div></div>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"VideoObject","name":"(LOSTFILM) СМОТРЕТЬ ОНЛАЙН СЕРИАЛ ПОД ЗЕМЛЁЙ 2026 10 СЕРИЯ","description":"10 серія серіалу «Под землёй» (2026) розкриває глибокі почуття між героями, які змушені боротися за своє кохання навіть у найтемніших обставинах. На фоні небезпеки та випробувань їхні стосунки стають сильнішими, але кожен вибір може назавжди змінити їхню долю. ","thumbnailUrl":"https://i.ytimg.com/vi/II_m28Bm-iM/hqdefault_live.jpg","uploadDate":"2026-04-01T07:20:00"}</script></div></div>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"VideoObject","name":"(LOSTFILM) СМОТРЕТЬ ОНЛАЙН СЕРИАЛ ПОД ЗЕМЛЁЙ 2026 10 СЕРИЯ","description":"10 серія серіалу «Под землёй» (2026) розкриває глибокі почуття між героями, які змушені боротися за своє кохання навіть у найтемніших обставинах. На фоні небезпеки та випробувань їхні стосунки стають сильнішими, але кожен вибір може назавжди змінити їхню долю. ","thumbnailUrl":"https://i.ytimg.com/vi/II_m28Bm-iM/hqdefault_live.jpg","uploadDate":"2026-04-02T08:10:00"}</script></div></div>
   <div id="footer" class="footer-content">
   <div class="footerheadtitle source-backgroundcolor">
   <div class="centerfooter">
